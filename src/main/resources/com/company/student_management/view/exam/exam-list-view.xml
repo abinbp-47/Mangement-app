@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://examListView.title"
+      focusComponent="examsDataGrid">
+    <data>
+        <collection id="examsDc"
+                    class="com.company.student_management.entity.Exam">
+            <fetchPlan extends="_base">
+                <property name="course" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="examsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Exam e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="examsDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createButton" action="examsDataGrid.createAction"/>
+            <button id="editButton" action="examsDataGrid.editAction"/>
+            <button id="removeButton" action="examsDataGrid.removeAction"/>
+            <simplePagination id="pagination" dataLoader="examsDl"/>
+        </hbox>
+        <dataGrid id="examsDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="examsDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create"/>
+                <action id="editAction" type="list_edit"/>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="exam_title"/>
+                <column property="date"/>
+                <column property="location"/>
+                <column property="course"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

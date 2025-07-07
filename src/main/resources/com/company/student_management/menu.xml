@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://jmix.io/schema/flowui/menu">
+
+    <menu id="application" title="msg://com.company.student_management/menu.application.title" opened="true">
+        <item view="User.list" title="msg://com.company.student_management.view.user/UserListView.title"/>
+        <item view="Exam.list" title="msg://com.company.student_management.view.exam/examListView.title"/>
+        <item view="Course.list" title="msg://com.company.student_management.view.course/courseListView.title"/>
+        <item view="Student.list" title="msg://com.company.student_management.view.student/studentListView.title"/>
+        <item view="Department.list"
+              title="msg://com.company.student_management.view.department/departmentListView.title"/>
+    </menu>
+
+</menu-config>
