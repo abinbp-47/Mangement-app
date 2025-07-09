@@ -41,6 +41,7 @@
                     <action id="entityClearAction" type="entity_clear"/>
                 </actions>
             </entityPicker>
+            <textField id="facultyIdField" property="facultyId"/>
         </formLayout>
         <h4 text="msg://com.company.student_management.entity/Course.students"/>
         <hbox id="studentsButtonsPanel" classNames="buttons-panel">

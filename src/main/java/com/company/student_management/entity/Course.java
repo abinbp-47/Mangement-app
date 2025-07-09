@@ -4,6 +4,7 @@ import io.jmix.core.DeletePolicy;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.entity.annotation.OnDeleteInverse;
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import io.jmix.core.metamodel.annotation.JmixProperty;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -32,6 +33,10 @@ public class Course {
     @OneToOne(fetch = FetchType.LAZY)
     private User faculty;
 
+    @JmixProperty
+    @Transient
+    private UUID facultyId;
+
     @JoinTable(name = "STUDENT_COURSE_LINK",
             joinColumns = @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"))
@@ -42,6 +47,14 @@ public class Course {
     @JoinColumn(name = "DEPARTMENT_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Department department;
+
+    public UUID getFacultyId() {
+        return facultyId;
+    }
+
+    public void setFacultyId(UUID facultyId) {
+        this.facultyId = facultyId;
+    }
 
     public Department getDepartment() {
         return department;
